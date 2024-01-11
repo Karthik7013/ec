@@ -1,14 +1,17 @@
 let users = [{
-    name: "karthik",
-    password: "1234",
-    email: "abc@gmail.com",
-    phno: "7013140693",
-    cart: [{}],
-    whishList: [{}]
-}];
+    _id: "1",
+    name: 'karthik',
+    phno: "701312094",
+    password: '1234',
+    email: 'abc@gmail.com',
+    cart: [],
+    whishList: [],
+    orders: []
+}
+];
 
 
-const userLogin = (req, res) => {
+const userLogin = async (req, res) => {
     let name = req.body.name;
     let password = req.body.password;
     let findUser = users.findIndex((e) => e.name === name);
@@ -23,29 +26,31 @@ const userLogin = (req, res) => {
     }
 }
 
-const addToCart = (req, res) => {
-    let id = req.params;
-
-}
-
-
-
-
-
-const addUser = (req, res) => {
+const userRegister = async (req, res) => {
     let { name, password, email, phno } = req.body;
     let newUser = {
-        name: name,
-        password: password,
-        email: email,
-        phno: phno,
-        cart: [{}],
+        name,
+        phno,
+        password,
+        email,
+        cart: [],
+        whishList: [],
+        orders: []
     };
     users.push(newUser);
-    res.send({ message: "user added", users });
+    res.json({ message: "user added", users });
 }
 
 
 
 
-export { userLogin, addUser, addToCart }
+
+
+
+
+
+
+
+
+
+export { userLogin, userRegister }
