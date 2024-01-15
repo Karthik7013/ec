@@ -9,7 +9,6 @@ import {
 } from "../controllers/product.js";
 
 
-
 productRouter.get('/all', getAllProducts);
 productRouter.get('/category', getCategory);
 productRouter.get('/category/:category', getProductByCategory);

@@ -1,7 +1,18 @@
 import express from "express";
+import mongoose from "mongoose";
 import { productRouter } from "./routes/productRoutes.js"
-import { userRouter } from "./routes/userRoutes.js"
+import { userRouter } from "./routes/userRoutes.js";
+import dotenv from "dotenv"
+dotenv.config();
 
+
+const MONGO_URL = process.env.MONGO_URL;
+const PORT = process.env.PORT;
+mongoose.connect(MONGO_URL).then(() => {
+  console.log('db connected')
+}).catch((err) => {
+  console.log(err)
+})
 
 const app = express();
 app.use(express.json());
@@ -17,12 +28,6 @@ app.use('/products', productRouter);
 app.use('/user', userRouter);
 
 
-app.get('*', (req, res) => {
-  res.send({
-    error: 'Page Not Found !'
-  })
-})
-
-app.listen(5000, () => {
-  console.log("server running on port 5000");
+app.listen(PORT, () => {
+  console.log(`server running on port ${PORT}`);
 });
