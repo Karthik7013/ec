@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import { productRouter } from "./routes/productRoutes.js"
 import { userRouter } from "./routes/userRoutes.js";
+import cors from "cors"
 import dotenv from "dotenv"
 dotenv.config();
 
@@ -11,12 +12,12 @@ const PORT = process.env.PORT || 8080;
 mongoose.connect(MONGO_URL).then(() => {
   console.log('db connected')
 }).catch((err) => {
-  console.log(err)
+  console.log(err);
 })
 
 const app = express();
 app.use(express.json());
-
+app.use(cors());
 
 
 app.get("/", (req, res) => {
