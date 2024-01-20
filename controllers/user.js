@@ -21,7 +21,8 @@ const userLogin = async (req, res) => {
             const passwordMatch = await bcrypt.compare(password, foundUser[0].password);
             if (passwordMatch) {
                 let {_id} = foundUser[0];
-                res.status(200).json({ status: true,userId:_id })
+                let userName = foundUser[0].name;
+                res.status(200).json({ status: true,userId:_id,userName })
             } else {
                 res.status(401).json({ status: false })
             }
