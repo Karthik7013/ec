@@ -6,10 +6,9 @@ import cors from "cors"
 import dotenv from "dotenv"
 dotenv.config();
 
-
 const MONGO_URL = process.env.MONGO_URL;
 const PORT = process.env.PORT || 8080;
-mongoose.connect(MONGO_URL).then(() => {
+mongoose.connect("mongodb+srv://admin:1234@cluster0.gbzago5.mongodb.net/?retryWrites=true&w=majority").then(() => {
   console.log('db connected')
 }).catch((err) => {
   console.log(err);

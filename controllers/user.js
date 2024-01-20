@@ -20,12 +20,13 @@ const userLogin = async (req, res) => {
         if (foundUser[0]) {
             const passwordMatch = await bcrypt.compare(password, foundUser[0].password);
             if (passwordMatch) {
-                res.status(200).json({ status: true })
+                let {_id} = foundUser[0];
+                res.status(200).json({ status: true,userId:_id })
             } else {
-                res.status(200).json({ status: false })
+                res.status(401).json({ status: false })
             }
         } else {
-            res.status(401).json({ message: "user not found " })
+            res.status(501).json({ message: "user not found " })
         }
     } catch (error) {
         res.status(500).json(error)
